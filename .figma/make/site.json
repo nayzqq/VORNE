@@ -1,0 +1,10 @@
+{
+  "description": "Provides a clear, structured platform for presenting website designs alongside detailed project specifications to streamline client-developer collaboration.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

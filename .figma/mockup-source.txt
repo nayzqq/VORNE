@@ -1,0 +1,236 @@
+001: <!DOCTYPE html>
+002: <html lang="ru">
+003: <head>
+004: <meta charset="UTF-8">
+005: <title>VORNE — Движение вперёд.</title>
+006: <style>
+007:   * { box-sizing: border-box; margin: 0; padding: 0; }
+008:   body {
+009:     font-family: 'Helvetica Neue', Arial, sans-serif;
+010:     background: #F5F5F3;
+011:     color: #111214;
+012:   }
+013:   a { text-decoration: none; color: inherit; }
+014: 
+015:   /* Header */
+016:   header {
+017:     position: sticky; top: 0; z-index: 50;
+018:     background: #111214;
+019:     display: flex; align-items: center; justify-content: space-between;
+020:     padding: 18px 48px;
+021:   }
+022:   .logo { height: 26px; display: block; }
+023:   nav { display: flex; gap: 32px; }
+024:   nav a { color: #B8B9BA; font-size: 14px; letter-spacing: 0.3px; transition: color .2s; }
+025:   nav a:hover { color: #F5F5F3; }
+026:   .login-btn {
+027:     color: #F5F5F3; font-size: 14px; border: 1px solid #3a3b3d;
+028:     border-radius: 6px; padding: 8px 18px; transition: all .2s;
+029:   }
+030:   .login-btn:hover { border-color: #3BC4E8; color: #3BC4E8; }
+031: 
+032:   /* Hero */
+033:   .hero {
+034:     position: relative;
+035:     background: linear-gradient(180deg,#0c0d0e,#1a1b1d 70%);
+036:     color: #F5F5F3;
+037:     text-align: center;
+038:     padding: 100px 24px 90px;
+039:     overflow: hidden;
+040:   }
+041:   .hero-gen { font-size: 12px; letter-spacing: 3px; color: #6b6c6e; margin-bottom: 18px; }
+042:   .hero h1 { font-size: 64px; font-weight: 600; line-height: 1.08; margin-bottom: 22px; }
+043:   .hero-sub { font-size: 15px; color: #9a9b9c; margin-bottom: 6px; letter-spacing: 0.5px; }
+044:   .hero-price { font-size: 22px; color: #3BC4E8; font-weight: 600; margin-bottom: 30px; }
+045:   .hero-img-wrap { max-width: 900px; margin: 0 auto 34px; border-radius: 14px; overflow: hidden; }
+046:   .hero-img-wrap img { width: 100%; display: block; transform: scale(1); transition: transform .6s ease; }
+047:   .hero-img-wrap:hover img { transform: scale(1.06); }
+048:   .hero-cta {
+049:     display: inline-block; background: #F5F5F3; color: #111214;
+050:     font-size: 14px; font-weight: 500; padding: 14px 32px; border-radius: 6px;
+051:     transition: transform .2s;
+052:   }
+053:   .hero-cta:hover { transform: translateY(-2px); }
+054: 
+055:   /* Section */
+056:   .section { padding: 72px 48px; }
+057:   .section-title {
+058:     font-size: 28px; font-weight: 600; margin-bottom: 36px; text-align: center;
+059:   }
+060: 
+061:   /* Cards grid */
+062:   .grid {
+063:     display: grid;
+064:     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+065:     gap: 24px;
+066:     max-width: 1280px;
+067:     margin: 0 auto;
+068:   }
+069:   .card {
+070:     background: #ffffff;
+071:     border-radius: 14px;
+072:     overflow: hidden;
+073:     border: 1px solid #E4E3DE;
+074:     transition: box-shadow .25s, transform .25s;
+075:   }
+076:   .card:hover { box-shadow: 0 18px 40px rgba(0,0,0,0.12); transform: translateY(-4px); }
+077:   .card-img-wrap { overflow: hidden; aspect-ratio: 16/9; background: #111214; }
+078:   .card-img {
+079:     width: 100%; height: 100%; object-fit: cover; display: block;
+080:     transform: scale(1); transition: transform .5s ease;
+081:   }
+082:   .card:hover .card-img { transform: scale(1.15); }
+083:   .card-body { padding: 18px 20px 22px; }
+084:   .card-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+085:   .card-code { font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+086:   .card-price { font-size: 13px; color: #6b6c6e; }
+087:   .card-name { font-size: 14px; color: #45464a; margin-bottom: 8px; }
+088:   .card-spec {
+089:     font-size: 11px; color: #9a9b9c; letter-spacing: 0.5px;
+090:     font-family: 'Courier New', monospace; margin-bottom: 14px;
+091:   }
+092:   .card-link { font-size: 13px; color: #111214; font-weight: 500; border-bottom: 1px solid #111214; padding-bottom: 2px; }
+093:   .card-link:hover { color: #3BC4E8; border-color: #3BC4E8; }
+094: 
+095:   /* About */
+096:   .about { background: #111214; color: #F5F5F3; padding: 80px 48px; text-align: center; }
+097:   .about h2 { font-size: 26px; font-weight: 600; margin-bottom: 20px; }
+098:   .about p { max-width: 620px; margin: 0 auto; font-size: 15px; line-height: 1.8; color: #B8B9BA; }
+099: 
+100:   /* Footer */
+101:   footer {
+102:     background: #0c0d0e; color: #6b6c6e; padding: 28px 48px;
+103:     display: flex; justify-content: space-between; align-items: center;
+104:     font-size: 12px; flex-wrap: wrap; gap: 10px;
+105:   }
+106:   footer .flinks { display: flex; gap: 20px; }
+107:   footer a:hover { color: #F5F5F3; }
+108: 
+109:   @media (max-width: 700px) {
+110:     header { padding: 14px 20px; }
+111:     nav { display: none; }
+112:     .hero { padding: 60px 16px 60px; }
+113:     .hero h1 { font-size: 38px; }
+114:     .section { padding: 48px 20px; }
+115:   }
+116: </style>
+117: </head>
+118: <body>
+119: 
+120: <header>
+121:   <img src="[EMBEDDED_IMAGE]" class="logo" alt="VORNE">
+122:   <nav>
+123:     <a href="#models">Модели</a>
+124:     <a href="#">Конфигуратор</a>
+125:     <a href="#">Технологии</a>
+126:     <a href="#">Сервис</a>
+127:     <a href="#">Дилеры</a>
+128:   </nav>
+129:   <a href="#" class="login-btn">Войти</a>
+130: </header>
+131: 
+132: <section class="hero">
+133:   <div class="hero-gen">VORNE / 02</div>
+134:   <h1>Движение<br>вперёд.</h1>
+135:   <div class="hero-sub">VORNE S5 &middot; S5 / AWD / 245 HP / 8AT</div>
+136:   <div class="hero-price">от 2 490 000 ₽</div>
+137:   <div class="hero-img-wrap">
+138:     <img src="[EMBEDDED_IMAGE]" alt="VORNE S5">
+139:   </div>
+140:   <a href="#models" class="hero-cta">Смотреть автомобиль →</a>
+141: </section>
+142: 
+143: <section class="section" id="models">
+144:   <div class="section-title">Выберите свой VORNE</div>
+145:   <div class="grid">
+146:     
+147:     <div class="card">
+148:       <div class="card-img-wrap">
+149:         <img src="[EMBEDDED_IMAGE]" alt="VORNE S1" class="card-img">
+150:       </div>
+151:       <div class="card-body">
+152:         <div class="card-top">
+153:           <span class="card-code">S1</span>
+154:           <span class="card-price">от 1 690 000 ₽</span>
+155:         </div>
+156:         <div class="card-name">Городской седан</div>
+157:         <div class="card-spec">S1 / FWD / 1.6-2.0 / AT</div>
+158:         <a href="#" class="card-link">Смотреть автомобиль →</a>
+159:       </div>
+160:     </div>
+161:     <div class="card">
+162:       <div class="card-img-wrap">
+163:         <img src="[EMBEDDED_IMAGE]" alt="VORNE S5" class="card-img">
+164:       </div>
+165:       <div class="card-body">
+166:         <div class="card-top">
+167:           <span class="card-code">S5</span>
+168:           <span class="card-price">от 2 490 000 ₽</span>
+169:         </div>
+170:         <div class="card-name">Бизнес-седан</div>
+171:         <div class="card-spec">S5 / AWD / 245 HP / 8AT</div>
+172:         <a href="#" class="card-link">Смотреть автомобиль →</a>
+173:       </div>
+174:     </div>
+175:     <div class="card">
+176:       <div class="card-img-wrap">
+177:         <img src="[EMBEDDED_IMAGE]" alt="VORNE X3" class="card-img">
+178:       </div>
+179:       <div class="card-body">
+180:         <div class="card-top">
+181:           <span class="card-code">X3</span>
+182:           <span class="card-price">от 2 390 000 ₽</span>
+183:         </div>
+184:         <div class="card-name">Компактный кроссовер</div>
+185:         <div class="card-spec">X3 / AWD / 190 HP / 7DCT</div>
+186:         <a href="#" class="card-link">Смотреть автомобиль →</a>
+187:       </div>
+188:     </div>
+189:     <div class="card">
+190:       <div class="card-img-wrap">
+191:         <img src="[EMBEDDED_IMAGE]" alt="VORNE X7" class="card-img">
+192:       </div>
+193:       <div class="card-body">
+194:         <div class="card-top">
+195:           <span class="card-code">X7</span>
+196:           <span class="card-price">от 3 490 000 ₽</span>
+197:         </div>
+198:         <div class="card-name">Семейный SUV</div>
+199:         <div class="card-spec">X7 / AWD / 245 HP / 7 мест</div>
+200:         <a href="#" class="card-link">Смотреть автомобиль →</a>
+201:       </div>
+202:     </div>
+203:     <div class="card">
+204:       <div class="card-img-wrap">
+205:         <img src="[EMBEDDED_IMAGE]" alt="VORNE GT" class="card-img">
+206:       </div>
+207:       <div class="card-body">
+208:         <div class="card-top">
+209:           <span class="card-code">GT</span>
+210:           <span class="card-price">от 3 990 000 ₽</span>
+211:         </div>
+212:         <div class="card-name">Спортивная модель</div>
+213:         <div class="card-spec">GT / AWD / 300 HP / 8AT</div>
+214:         <a href="#" class="card-link">Смотреть автомобиль →</a>
+215:       </div>
+216:     </div>
+217:   </div>
+218: </section>
+219: 
+220: <section class="about">
+221:   <h2>Что такое VORNE?</h2>
+222:   <p>Мы считаем, что современный автомобиль должен быть красивым, технологичным и надёжным. Поэтому мы создали VORNE — новый автомобильный бренд для тех, кто больше не хочет выбирать между ценой, дизайном и качеством.</p>
+223: </section>
+224: 
+225: <footer>
+226:   <span>© 2026 VORNE. Все права защищены.</span>
+227:   <div class="flinks">
+228:     <a href="#">Модели</a>
+229:     <a href="#">Конфигуратор</a>
+230:     <a href="#">Дилеры</a>
+231:     <a href="#">Контакты</a>
+232:   </div>
+233: </footer>
+234: 
+235: </body>
+236: </html>
